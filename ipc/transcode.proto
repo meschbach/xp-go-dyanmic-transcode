@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package ipc;
+option go_package = "./ipc";
+import "google/protobuf/any.proto";
+import "google/protobuf/descriptor.proto";
+
+service Transcode {
+  rpc ToJSON(JsonIn) returns (JsonOut);
+}
+
+message JsonIn {
+  google.protobuf.Any what = 1;
+  google.protobuf.FileDescriptorSet format = 2;
+}
+
+message JsonOut {
+  string json = 1;
+}
+
+message OtherMessage {
+  string str = 1;
+  int64 i = 2;
+}
